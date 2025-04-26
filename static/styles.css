@@ -2,7 +2,7 @@
     --black: #151515;
     --white: #FFFFFF;
     --colorBG: #303030;
-    --colorAccent: #454545;
+    --colorAccent: #404040;
     --colorHeader: #23FF55;
     --buttonHighlight: #1AD747;
 
@@ -60,6 +60,7 @@ p2 {
     padding: var(--padTB) var(--padSide) var(--marginB) var(--padSide);
     margin: var(--spacer) auto;
     margin-bottom: var(--marginB);
+    width: 90%;
 }
 
 .container-text {
@@ -132,7 +133,7 @@ button:hover {
 }
 
 .form-group input {
-    width: 100%;
+    width: 95%;
     font-family: sans-serif;
     font-size: 16px;
     padding: 12px;
@@ -143,7 +144,7 @@ button:hover {
 }
 
 .containerTextbox {
-    width: 100%;
+    width: 95%;
     height: 300px;
     font-family: sans-serif;
     font-size: 16px;
