@@ -33,13 +33,6 @@ h1 {
     margin: 0px auto;
 }
 
-h2 {
-    text-align: center;
-    font-size: 25px;
-    color: var(--white);
-    padding: 10px;
-}
-
 p {
     font-size: var(--fontSize);
     text-align: left;
@@ -80,45 +73,6 @@ p2 {
     padding: 0px;
 }
 
-.container-inputBox {
-    background-color: #004500;
-    font-size: 20px;
-    text-align: center;
-    border-radius: var(--borderRad);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 0px;
-    margin: var(--spacer) auto;
-    margin-bottom: var(--marginB);
-}
-
-.container-fig {
-    background-color: var(--colorBG);
-    max-width: 800px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 50px 0px 0px 0px;
-    margin: 5px auto;
-    margin-top: 0px;
-}
-
-.container-figDescription {
-    color: var(--white);
-    font-size: 18px;
-    text-align: center;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 5px 0px 0px 0px;
-    margin: 0px auto;
-}
-
-.container-fig img {
-    margin-top: 0px;
-}
-
 .div-header {
     color: var(--colorHeader);
     font-size: 22px;
@@ -147,7 +101,7 @@ button {
     border: none;
     border-radius: var(--borderRad);
     padding: 8px 20px;
-    margin-top: var(--marginButton);
+    margin-top: var(--marginButton)-5;
     margin-bottom: var(--marginButton);
 }
 
