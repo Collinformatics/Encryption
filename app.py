@@ -6,9 +6,9 @@ app = Flask(__name__)
 
 @app.route('/')
 def home():
-    return render_template('home.html')
+    return render_template('decrypt.html')
 
-@app.route('/encrypt', methods=['POST'])
+@app.route('/AES')
 def encryptionAES():
     return render_template('AES.html')
 

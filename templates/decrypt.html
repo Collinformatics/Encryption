@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+
+        <title>Decryption</title>
+    </head>
+    <body>
+        <div class="container-header">
+            <button class="buttonHeader" onclick="decryptionPage()">Decryption</button>
+            <button class="buttonHeader" onclick="encryptPage()">Encryption</button>
+        </div>
+
+        <h1>Decryption</h1>
+        <!-- Main container -->
+        <div class="container">
+            <form action="/run" method="POST" enctype="multipart/form-data" class="input-form">
+                <div class="div-header">Key:</div>
+                <div class="form-group">
+                    <input type="text" id="key" name="key" required>
+                </div>
+                <div class="div-header">Encrypted Text:</div>
+                <div class="form-group">
+                    <input type="text" id="decryptedText" name="decryptedText" required>
+                </div>
+                <button type="button" onclick="decryptText(event)">Decrypt</button>
+            </form>
+        </div>
+    </body>
+    <script>
+        function decryptText() {
+            console.log('decrypt');
+        };
+        
+        // Button Functions
+        function decryptionPage() {
+            fetch('/', {
+                method: 'GET',
+            }).then(response => {
+                if (response.ok) {
+                    window.location.href = '/';  // Redirect to the AES page
+                } else {
+                    console.error('Decryption request failed');
+                }
+            }).catch(err => console.error('Fetch error: ', err)); // Handle any errors
+        }
+        function encryptPage() {
+            fetch('/AES', {
+                method: 'GET',
+            }).then(response => {
+                if (response.ok) {
+                    window.location.href = '/AES';  // Redirect to the AES page
+                } else {
+                    console.error('Encryption request failed');
+                }
+            }).catch(err => console.error('Fetch error: ', err)); // Handle any errors
+        }
+    </script>
+</html>
+

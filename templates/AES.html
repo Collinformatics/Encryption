@@ -5,9 +5,14 @@
         <script src="https://cdn.jsdelivr.net/npm/crypto-js@4.1.1/crypto-js.min.js"></script>
         <script src="{{ url_for('static', filename='AES.js') }}"></script>
 
-        <title>Application</title>
+        <title>Encryption</title>
     </head>
     <body>
+        <div class="container-header">
+            <button class="buttonHeader" onclick="decrypt()">Decryption</button>
+            <button class="buttonHeader" onclick="encrypt()">Encryption</button>
+        </div>
+
         <h1>AES Encryption</h1>
         <!-- Main container -->
         <div class="container">
@@ -59,6 +64,30 @@
                 </div>
             `;
             }
+
+        // Button Functions
+        function decrypt() {
+            fetch('/', {
+                method: 'GET',
+            }).then(response => {
+                if (response.ok) {
+                    window.location.href = '/';  // Redirect to the AES page
+                } else {
+                    console.error('Decryption request failed');
+                }
+            }).catch(err => console.error('Fetch error: ', err)); // Handle any errors
+        }
+        function encrypt() {
+            fetch('/AES', {
+                method: 'GET',
+            }).then(response => {
+                if (response.ok) {
+                    window.location.href = '/AES';  // Redirect to the AES page
+                } else {
+                    console.error('Encryption request failed');
+                }
+            }).catch(err => console.error('Fetch error: ', err)); // Handle any errors
+        }
         </script>
     </body>
 </html>
