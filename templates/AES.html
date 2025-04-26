@@ -50,12 +50,12 @@
                 let resultContainer = document.getElementById('encryptedData');
                 resultContainer.style.display = 'block';
                 resultContainer.innerHTML = `
-                <div class="div-header">Results:</div>
+                <div class="div-header">Encrypted Data:</div>
                 <div class="container-text">
-                    <p><strong>Key:</strong> ${key}</p>
-                    <p><strong>Encrypted Message:</strong> ${encrypted}<br></p>
-                    <p><strong>Received Message:</strong> ${message}</p>
-                    <p><strong>Decrypted Message:</strong> ${decrypted}</p>
+                    <p><strong style="color: #009000;">Key:</strong> ${key}</p>
+                    <p><strong style="color: #009000;">Encrypted Text:</strong> ${encrypted}<br></p>
+                    <p><strong style="color: #009000;">Received Text:</strong> ${message}</p>
+                    <p><strong style="color: #009000;">Decrypted Text:</strong> ${decrypted}</p>
                 </div>
             `;
             }
