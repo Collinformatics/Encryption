@@ -11,7 +11,7 @@
     --padSide: 25px;
     --padTB: 30px;
     --padInput: 8px;
-    --marginB: 12px;
+    --marginB: 20px;
     --marginButton: 12px;
     --fontSize: 16px;
     --borderRad: 5px;
@@ -102,7 +102,7 @@ button {
     border: none;
     border-radius: var(--borderRad);
     padding: 8px 20px;
-    margin-top: var(--marginButton)-5;
+    margin-top: 0px;
     margin-bottom: var(--marginButton);
 }
 
