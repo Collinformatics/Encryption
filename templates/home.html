@@ -2,6 +2,8 @@
 <html>
     <head>
         <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+        <script src="https://cdn.jsdelivr.net/npm/crypto-js@4.1.1/crypto-js.min.js"></script>
+        <script src="AES.js"></script>
 
         <title>Application</title>
     </head>
@@ -9,30 +11,28 @@
         <h1>AES Encryption</h1>
         <div class="container">
             <form action="/run" method="POST" enctype="multipart/form-data" class="input-form">
-                <div class="div-header">Encrypt Message:</div>
+                <div class="div-header">Key:</div>
                 <div class="form-group">
-                    <label for="message">Message:</label>
-                    <textarea type="text" id="message" name="message" required class="containerTextbox" value=""></textarea>
+                    <input type="text" id="key" name="key" required value="">
                 </div>
-                <button type="button" onclick="evaluateForm(event)">Evaluate</button>
+                <div class="form-group">
+                    <div class="div-header">Message:</div>
+                    <textarea id="message" name="message" required class="containerTextbox" value=""></textarea>
+                </div>
+                <button type="button" onclick="encryptMessage(event)">Encrypt</button>
             </form>
         </div>
-
-            <div class="container">
-            <div class="div-header">Encryption Key:</div>
-            <div class="container-text">
-                <p>Key: </p>
-            </div>
-        </div>
         <script>
-            function evaluateForm(event) {
+            function encryptMessage(event) {
                 event.preventDefault(); // Prevent any default form action
 
                 // Handle the inputs
                 let message = document.getElementById('message').value;
+                let key = document.getElementById('key').value;
+                console.log(message + '\n' + key + '\n');
 
                 // Inspect input field
-                if (!message) {
+                if (!message || !key) {
                     alert("Please fill out all required fields.");
                     return;
                 }
@@ -49,7 +49,7 @@
 
                 // Inspect run
                 .then(response => {
-                    if (!response.ok) throw new Error("Run failed, please try again.");
+                    if (!response.ok) throw new Error("Encryption failed (A), please try again.");
                     return response.json();
                 })
                 .then(data => {
@@ -84,7 +84,7 @@
                     const errorDiv = document.createElement('div');
                     errorDiv.className = 'container';
                     errorDiv.innerHTML = `<p style="color: red;">
-                        Error fetching results: ${error.message}</p>`;
+                        Encryption failed (B), please try again.</p>`;
                     document.body.appendChild(errorDiv);
                 });
             }

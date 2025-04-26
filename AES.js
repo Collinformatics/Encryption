@@ -1,10 +1,7 @@
 const CryptoJS = require('crypto-js');
 
 
-
-// Parameters
-const bits = [224, 256, 384, 512];
-
+// Inputs
 let message = 'hidden message';
 let key = 'password1234';
 
@@ -22,18 +19,12 @@ function decrypt(encrypted, password) {
   let bytes = CryptoJS.AES.decrypt(encrypted, password);
   let decoded = bytes.toString(CryptoJS.enc.Utf8);
   console.log(
-    'Hidden Message: ' + encrypted + '\n' + 
+    'Hidden Message: ' + encrypted + '\n' +
     'Decrypted:', decoded);
   return decoded;
 }
 
 
+// Encrypt the message
 encrypted = encrypt(message, key);
 decrypt(encrypted , key)
-
-
-
-
-
-
-
