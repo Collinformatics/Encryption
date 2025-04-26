@@ -2,23 +2,13 @@
 <html>
     <head>
         <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
-        <script src="https://cdn.jsdelivr.net/npm/crypto-js@4.1.1/crypto-js.min.js"></script>
-        <script src="AES.js"></script>
 
-        <title>Application</title>
+        <title>Encryption</title>
     </head>
     <body>
-        <h1>AES Encryption</h1>
-        <!-- Main input container -->
-        <div class="container">
-            <div class="div-header">Key:</div>
-
-            <button type="button" onclick="click(event)">Button</button>
+        <div class="container-header">
+            <button class="buttonHeader" onclick="window.location.href='/aes'">Decryption</button>
+            <button class="buttonHeader" onclick="window.location.href='/aes'">Encryption</button>
         </div>
-        <script>
-        function click(event) {
-            console.log('Press Button')
-        }
-        </script>
     </body>
 </html>
