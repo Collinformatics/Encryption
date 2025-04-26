@@ -2,6 +2,7 @@
 <html>
     <head>
         <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+        <script src="{{ url_for('static', filename='decrypt.js') }}"></script>
 
         <title>Decryption</title>
     </head>
@@ -17,11 +18,11 @@
             <form action="/run" method="POST" enctype="multipart/form-data" class="input-form">
                 <div class="div-header">Key:</div>
                 <div class="form-group">
-                    <input type="text" id="key" name="key" required>
+                    <input type="text" id="key" name="key">
                 </div>
                 <div class="div-header">Encrypted Text:</div>
                 <div class="form-group">
-                    <input type="text" id="decryptedText" name="decryptedText" required>
+                    <input type="text" id="encodedText" name="encodedText" required>
                 </div>
                 <button type="button" onclick="decryptText(event)">Decrypt</button>
             </form>
@@ -29,7 +30,16 @@
     </body>
     <script>
         function decryptText() {
-            console.log('decrypt');
+            let text = document.getElementById('encodedText').value;
+            let password = document.getElementById('key').value;
+
+            // Inspect input field
+            if (!text) {
+                alert ("Please provide encrypted text.");
+                return;
+            }
+
+            decodedText = decrypt(text, password);
         };
         
         // Button Functions

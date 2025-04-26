@@ -1,4 +1,4 @@
-function encrypt(message, password) {
+function encryptAES(message, password) {
   let encrypted = CryptoJS.AES.encrypt(message, password).toString();
   console.log(
     'Message: ' + message + '\n' +
@@ -7,7 +7,7 @@ function encrypt(message, password) {
   return encrypted
 }
 
-function decrypt(encrypted, password) {
+function decryptAES(encrypted, password) {
   let bytes = CryptoJS.AES.decrypt(encrypted, password);
   let decoded = bytes.toString(CryptoJS.enc.Utf8);
   console.log(

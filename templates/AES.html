@@ -47,8 +47,8 @@
                 }
 
                 // AES encryption
-                let encrypted = encrypt(message, key);
-                let decrypted = decrypt(encrypted, key);
+                let encrypted = encryptAES(message, key);
+                let decrypted = decryptAES(encrypted, key);
 
 
                 // Show result in the HTML
