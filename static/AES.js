@@ -47,13 +47,13 @@ function encryptAES(message, keyBits) {
     let key
     if (keyBits === 256) {
         key = CryptoJS.lib.WordArray.random(32); // 256-bit
-    } elif (keyBits === 192) {
+    } else if (keyBits === 192) {
         key = CryptoJS.lib.WordArray.random(24); // 192-bit
-    } elif (keyBits === 192) {
+    } else if (keyBits === 192) {
         key = CryptoJS.lib.WordArray.random(16); // 128-bit
     } else {
         key = CryptoJS.lib.WordArray.random(32); // 256-bit
-    }
+    };
 
     // Generate random IV: 16 bytes for AES
     let iv = CryptoJS.lib.WordArray.random(16);
@@ -64,10 +64,14 @@ function encryptAES(message, keyBits) {
         mode: CryptoJS.mode.CBC,
         padding: CryptoJS.pad.Pkcs7
     });
-    return {
+
+    let data = {
         ciphertext: encrypted.ciphertext.toString(CryptoJS.enc.Base64),
-        iv: iv.toString(CryptoJS.enc.Hex) // save or send this!
+        key: key,
+        iv: iv.toString(CryptoJS.enc.Hex)
     };
+
+    return data;
 }
 
 

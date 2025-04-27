@@ -1,5 +1,8 @@
 // Function to handle HTML button selection
-function select(buttonId) {
+function select(bits) {
+    // Directly use the passed 'bits' as the button ID
+    let buttonId = bits;
+
     // Remove the 'selected' class from all buttons
     let buttons = document.querySelectorAll('.button-key');
     buttons.forEach(button => {
@@ -8,10 +11,12 @@ function select(buttonId) {
 
     // Add 'selected' class to the clicked button
     let selectedButton = document.getElementById(buttonId);
-    selectedButton.classList.add('selected');
+    if (selectedButton) {
+        selectedButton.classList.add('selected');
+    } else {
+        console.error('Button not found:', buttonId);
+    }
 
     // Set the value of keyBits based on the selected button's ID
-    let keyBits = buttonId.replace('key', ''); // Extract input
-    document.getElementById('keyBits').value = keyBits;
-    console.log('Key Bits: ' + keyBits)
+    document.getElementById('keyBits').value = bits;
 }
