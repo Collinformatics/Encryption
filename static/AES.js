@@ -24,7 +24,9 @@ function encryptMessage(event) {
     // AES decryption
     let decrypted = decryptAES(decodedCipherText, encrypted.key, encrypted.iv);
     console.log('Decrypted: ' + decrypted)
-
+    
+    // Define label color
+    const labelColor = getComputedStyle(document.documentElement).getPropertyValue('--buttonBG').trim();
 
     // Show result in the HTML
     let resultContainer = document.getElementById('encryptedData');
@@ -32,11 +34,11 @@ function encryptMessage(event) {
     resultContainer.innerHTML = `
     <div class="div-header">Encrypted Data:</div>
     <div class="container-text">
-        <p><strong style="color: #009000;">Key:</strong> ${encrypted.key}</p>
-        <p><strong style="color: #009000;">iv:</strong> ${encrypted.iv}</p>
-        <p><strong style="color: #009000;">Encrypted Text:</strong> ${encrypted.ciphertext}<br></p>
-        <p><strong style="color: #009000;">Received Text:</strong> ${message}</p>
-        <p><strong style="color: #009000;">Decrypted Text:</strong> ${decrypted}</p>
+        <p><strong style="color: ${labelColor};">Key:</strong> ${encrypted.key}</p>
+        <p><strong style="color: ${labelColor};">iv:</strong> ${encrypted.iv}</p>
+        <p><strong style="color: ${labelColor};">Encrypted Text:</strong> ${encrypted.ciphertext}<br></p>
+        <p><strong style="color: ${labelColor};">Received Text:</strong> ${message}</p>
+        <p><strong style="color: ${labelColor};">Decrypted Text:</strong> ${decrypted}</p>
     </div>
 `;
 }
@@ -78,6 +80,7 @@ function encryptAES(message, keyBits) {
 function decryptAES(encryptedText, key, iv) {
     // Convert IV from Hex to WordArray
     let ivWordArray = CryptoJS.enc.Hex.parse(iv);
+    console.log('iv: ' + iv + '\nArray: ' + ivWordArray);
 
     // Decrypt
     let decrypted = CryptoJS.AES.decrypt(encryptedText, key, {

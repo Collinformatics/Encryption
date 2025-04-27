@@ -1,10 +1,18 @@
 :root {
     --black: #050505;
     --white: #FFFFFF;
-    --buttonHighlight: #1AD747;
+
+    --buttonBG: #189E07;
+    --buttonHighlight: #16BC01;
+    --buttonSizeVert: 12px;
+    --buttonSizeHor: 20px;
+
     --buttonBits: #23FF55;
     --buttonBitsBorder: #002000;
     --buttonBitsSelect: #002000;
+    --buttonBitsSizeVert: 12px;
+    --buttonBitsSizeHor: 24px;
+
     --colorBG: #303030;
     --colorAccent: #404040;
     --colorPrimary: #23FF55;
@@ -54,6 +62,64 @@ p2 {
     padding-bottom: 0px;
     margin: var(--spacer) auto;
 }
+
+/* Buttons */
+button {
+    background-color: var(--buttonBG);
+    color: var(--black);
+    font-size: var(--fontSize);
+    cursor: pointer;
+    border: none;
+    border-radius: var(--borderRad);
+    padding: var(--buttonSizeVert) var(--buttonSizeHor);
+    margin-top: 0px;
+    margin-bottom: var(--marginButton);
+}
+button:hover {
+    background-color: var(--buttonHighlight);
+}
+
+/* Style for .button-key buttons inside the form */
+.form-group .button-key {
+    background-color: var(--black);
+    color: var(--buttonBits);
+    font-size: var(--fontSize);
+    cursor: pointer;
+    border: 2px solid var(--buttonBitsBorder);
+    border-radius: var(--borderRad);
+    padding: var(--buttonBitsSizeVert) var(--buttonBitsSizeHor);
+    margin-top: 0px;
+    margin-bottom: var(--marginButton);
+}
+/* Prevent hover effect on selected .button-key buttons */
+.form-group .button-key.selected {
+    background-color: var(--buttonBitsSelect);
+    color: var(--white);
+    border: 2px solid #39FF14;
+}
+
+.buttonHeader {
+    background-color: var(--black);
+    color: var(--colorPrimary);
+    border-radius: 0;
+    font-size: 22px;
+    width: 50vw;
+    height: 100%; /* Fill container height */
+    cursor: pointer;
+    padding: 12px 0;
+    margin-top: 0px;
+    margin-bottom: 0;
+    display: block;
+}
+
+.buttonHeader:first-child {
+    border-right: var(--borderThickness) solid var(--colorBG); /* Add a border to the first button */
+}
+
+.buttonHeader:hover {
+    background-color: #101010;
+}
+
 
 .container {
     background-color: var(--colorBG);
@@ -108,62 +174,6 @@ input[type="file"] {
     max-width: 350px;
     padding: var(--padInput);
     margin-bottom: var(--padTB);
-}
-
-button {
-    background-color: var(--colorPrimary);
-    color: var(--white);
-    font-size: var(--fontSize);
-    cursor: pointer;
-    border: none;
-    border-radius: var(--borderRad);
-    padding: 8px 20px;
-    margin-top: 0px;
-    margin-bottom: var(--marginButton);
-}
-button:hover {
-    background-color: var(--buttonHighlight);
-}
-
-/* Style for .button-key buttons inside the form */
-.form-group .button-key {
-    background-color: var(--black);
-    color: var(--buttonBits);
-    font-size: var(--fontSize);
-    cursor: pointer;
-    border: 2px solid var(--buttonBitsBorder);
-    border-radius: var(--borderRad);
-    padding: 12px 24px;
-    margin-top: 0px;
-    margin-bottom: var(--marginButton);
-}
-/* Prevent hover effect on selected .button-key buttons */
-.form-group .button-key.selected {
-    background-color: var(--buttonBitsSelect);
-    color: var(--white);
-    border: 2px solid #39FF14;
-}
-
-.buttonHeader {
-    background-color: var(--black);
-    color: var(--colorPrimary);
-    border-radius: 0;
-    font-size: 22px;
-    width: 50vw;
-    height: 100%; /* Fill container height */
-    cursor: pointer;
-    padding: 12px 0;
-    margin-top: 0px;
-    margin-bottom: 0;
-    display: block;
-}
-
-.buttonHeader:first-child {
-    border-right: var(--borderThickness) solid var(--colorBG); /* Add a border to the first button */
-}
-
-.buttonHeader:hover {
-    background-color: #101010;
 }
 
 .input-form {
