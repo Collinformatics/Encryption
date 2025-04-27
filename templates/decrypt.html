@@ -2,7 +2,6 @@
 <html>
     <head>
         <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
-        <script src="{{ url_for('static', filename='decrypt.js') }}"></script>
 
         <title>Decryption</title>
     </head>
@@ -27,21 +26,64 @@
                 <button type="button" onclick="decryptText(event)">Decrypt</button>
             </form>
         </div>
+    
+        <!-- Results container -->
+        <div id="decryptedData" class="container" style="display: none;"></div>
     </body>
     <script>
         function decryptText() {
-            let text = document.getElementById('encodedText').value;
-            let password = document.getElementById('key').value;
+            // let encryptedText = document.getElementById('encodedText').value;
+            // let key = document.getElementById('key').value;
+
+            // test input
+            let encryptedText = 'aGlkZSB0aGUgbWVzc2FnZQo=';
+            let key = 'ave99noodle'
+
 
             // Inspect input field
-            if (!text) {
+            if (!encryptedText) {
                 alert ("Please provide encrypted text.");
                 return;
             }
 
-            decodedText = decrypt(text, password);
+            // Create the data object to send
+            const data = {
+                encryptedText: encryptedText,
+                key: key
+            };
+
+            // Send a POST request to the '/decryption' route
+            fetch('/decryption', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(data)
+            })
+            .then(response => response.json())
+            .then(data => {
+                // Show the decrypted data in the HTML
+                let resultContainer = document.getElementById('decryptedData');
+                resultContainer.style.display = 'block';
+                resultContainer.innerHTML = `
+                    <div class="div-header">Inputs:</div>
+                    <div class="container-text">
+                        <p><strong style="color: #009000;">Key:</strong> ${key}</p>
+                        <p><strong style="color: #009000;">Encrypted Text:</strong> ${encryptedText}</p>
+                    </div>
+                    <div class="div-header">Decrypted Data:</div>
+                    <div class="container-text">
+                        <p><strong style="color: #009000;">Base64:</strong> ${data.base64}</p>
+                        <p><strong style="color: #009000;">Hexadecimal:</strong> ${data.hex}</p>
+
+                    </div>
+                `;
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
         };
-        
+
         // Button Functions
         function decryptionPage() {
             fetch('/', {

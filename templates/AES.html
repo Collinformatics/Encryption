@@ -47,8 +47,8 @@
                 }
 
                 // AES encryption
-                let encrypted = encryptAES(message, key);
-                let decrypted = decryptAES(encrypted, key);
+                let encryptedText = encryptAES(message, key);
+                let decryptedText = decryptAES(encryptedText, key);
 
 
                 // Show result in the HTML
@@ -58,9 +58,9 @@
                 <div class="div-header">Encrypted Data:</div>
                 <div class="container-text">
                     <p><strong style="color: #009000;">Key:</strong> ${key}</p>
-                    <p><strong style="color: #009000;">Encrypted Text:</strong> ${encrypted}<br></p>
+                    <p><strong style="color: #009000;">Encrypted Text:</strong> ${encryptedText}<br></p>
                     <p><strong style="color: #009000;">Received Text:</strong> ${message}</p>
-                    <p><strong style="color: #009000;">Decrypted Text:</strong> ${decrypted}</p>
+                    <p><strong style="color: #009000;">Decrypted Text:</strong> ${decryptedText}</p>
                 </div>
             `;
             }
