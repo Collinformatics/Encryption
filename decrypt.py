@@ -1,20 +1,25 @@
 import base64
+from cryptography.fernet import Fernet
 import urllib.parse
 
 class Decryption:
     def __init__(self):
         self.encryptedText = ''
+        self.key = ''
         self.data = {}
 
     def decode(self, encryptedText, key):
         self.encryptedText = encryptedText
+        self.key = key
+
         decryptedBase64 = Decryption.base64(self)
+        decryptedFernet = Decryption.fernet(self)
         decryptedHex = Decryption.hexadecimal(self)
         decryptedURL = Decryption.url(self)
-        print(decryptedURL)
 
         # Make dictionary
         self.data['base64'] = decryptedBase64
+        self.data['fernet'] = decryptedFernet
         self.data['hex'] = decryptedHex
         self.data['url'] = decryptedURL
 
@@ -29,6 +34,21 @@ class Decryption:
             return ''
 
 
+    def fernet(self):
+        # try:
+        print(f'Key: {self.key}')
+
+        # Encrypt a message
+        cipher = Fernet(self.key)
+
+        # Decrypt the message
+        decryptedText = cipher.decrypt(self.encryptedText.encode()).decode()
+        print(f'Decrypted Message: {decryptedText}\n')
+
+        return decryptedText
+        # except:
+        #     return ''
+
     def hexadecimal(self):
         # Hexadecimal
         try:
@@ -36,9 +56,9 @@ class Decryption:
         except:
             return ''
 
+
     def url(self):
         try:
             return urllib.parse.unquote(self.encryptedText)
         except:
             return ''
-

@@ -32,13 +32,24 @@
     </body>
     <script>
         function decryptText() {
-            // let encryptedText = document.getElementById('encodedText').value;
-            // let key = document.getElementById('key').value;
+            const testrun = false;
 
-            // test input
-            let encryptedText = 'aGlkZSB0aGUgbWVzc2FnZQo=';
-            let key = 'ave99noodle'
+            let encryptedText;
+            let key;
 
+            if (testrun) {
+                console.log('A')
+                // test input
+                encryptedText = 'aGlkZSB0aGUgbWVzc2FnZQo=';
+                key = '3QFdGtKDMosrulVEErk7QgN23K3p5D_xwQt4KCPCRbg=' // 'ave99noodle'
+            } else {
+                console.log('B')
+                encryptedText = document.getElementById('encodedText').value;
+                key = document.getElementById('key').value;
+            }
+
+            console.log('Encrypted:', encryptedText);
+            console.log('Key:', key);
 
             // Inspect input field
             if (!encryptedText) {
@@ -74,6 +85,7 @@
                     <div class="div-header">Decrypted Data:</div>
                     <div class="container-text">
                         <p><strong style="color: #009000;">Base64:</strong> ${data.base64}</p>
+                        <p><strong style="color: #009000;">Fernet:</strong> ${data.fernet}</p>
                         <p><strong style="color: #009000;">Hexadecimal:</strong> ${data.hex}</p>
                         <p><strong style="color: #009000;">URL Decode:</strong> ${data.url}</p>
                     </div>

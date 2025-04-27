@@ -76,9 +76,11 @@ p2 {
 
 .container-text {
     background-color: var(--colorBG);
-    font-size: 20px;
-    text-align: center;
     color: var(--white);
+    overflow-wrap: break-word;
+    word-break: break-all;
+    font-size: 20px;
+    text-align: left;
     border-radius: var(--borderRad);
     line-height: 1.4;
     margin: 0px auto;
