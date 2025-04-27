@@ -26,6 +26,7 @@ class Decryption:
         return self.data
 
 
+
     def base64(self):
         # Base 64
         try:
@@ -34,20 +35,15 @@ class Decryption:
             return ''
 
 
+
     def fernet(self):
-        # try:
-        print(f'Key: {self.key}')
+        try:
+            cipher = Fernet(self.key)
+            return cipher.decrypt(self.encryptedText.encode()).decode()
+        except:
+            return ''
 
-        # Encrypt a message
-        cipher = Fernet(self.key)
 
-        # Decrypt the message
-        decryptedText = cipher.decrypt(self.encryptedText.encode()).decode()
-        print(f'Decrypted Message: {decryptedText}\n')
-
-        return decryptedText
-        # except:
-        #     return ''
 
     def hexadecimal(self):
         # Hexadecimal
@@ -55,6 +51,7 @@ class Decryption:
             return bytes.fromhex(self.encryptedText).decode('utf-8')
         except:
             return ''
+
 
 
     def url(self):
