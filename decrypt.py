@@ -1,4 +1,5 @@
 import base64
+import urllib.parse
 
 class Decryption:
     def __init__(self):
@@ -7,18 +8,15 @@ class Decryption:
 
     def decode(self, encryptedText, key):
         self.encryptedText = encryptedText
-        
-        # Base 64
-        print(f'Decode: Base64\n'
-              f'Message: {self.encryptedText}\n')
         decryptedBase64 = Decryption.base64(self)
-
-        # Hexadecimal
         decryptedHex = Decryption.hexadecimal(self)
+        decryptedURL = Decryption.url(self)
+        print(decryptedURL)
 
         # Make dictionary
         self.data['base64'] = decryptedBase64
         self.data['hex'] = decryptedHex
+        self.data['url'] = decryptedURL
 
         return self.data
 
@@ -38,4 +36,9 @@ class Decryption:
         except:
             return ''
 
+    def url(self):
+        try:
+            return urllib.parse.unquote(self.encryptedText)
+        except:
+            return ''
 

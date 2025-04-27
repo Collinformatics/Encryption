@@ -1,5 +1,5 @@
 :root {
-    --black: #151515;
+    --black: #050505;
     --white: #FFFFFF;
     --colorBG: #303030;
     --colorAccent: #404040;
@@ -15,6 +15,7 @@
     --marginButton: 12px;
     --fontSize: 16px;
     --borderRad: 5px;
+    --borderThickness: 2px;
 }
 
 body {
@@ -64,9 +65,9 @@ p2 {
 }
 
 .container-header {
-    border-bottom: 2px solid var(--colorAccent);
+    border-bottom: var(--borderThickness) solid var(--colorBG);
     width: 100%;
-    height: 60px;
+    height: 55px;
     display: flex; /* make horizontal buttons */
     flex-direction: row;
     margin: 0px auto;
@@ -134,11 +135,11 @@ button:hover {
 }
 
 .buttonHeader:first-child {
-    border-right: 2px solid var(--colorAccent); /* Add a border to the first button */
+    border-right: var(--borderThickness) solid var(--colorBG); /* Add a border to the first button */
 }
 
 .buttonHeader:hover {
-    background-color: #202020;
+    background-color: #101010;
 }
 
 .input-form {
