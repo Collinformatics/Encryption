@@ -31,7 +31,8 @@ class Decryption:
         # Base 64
         try:
             return base64.b64decode(self.encryptedText).decode('utf-8')
-        except:
+        except Exception as exc:
+            print(exc)
             return ''
 
 
@@ -40,7 +41,8 @@ class Decryption:
         try:
             cipher = Fernet(self.key)
             return cipher.decrypt(self.encryptedText.encode()).decode()
-        except:
+        except Exception as exc:
+            print(exc)
             return ''
 
 
@@ -49,7 +51,8 @@ class Decryption:
         # Hexadecimal
         try:
             return bytes.fromhex(self.encryptedText).decode('utf-8')
-        except:
+        except Exception as exc:
+            print(exc)
             return ''
 
 
@@ -57,5 +60,6 @@ class Decryption:
     def url(self):
         try:
             return urllib.parse.unquote(self.encryptedText)
-        except:
+        except Exception as exc:
+            print(exc)
             return ''
