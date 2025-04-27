@@ -3,8 +3,8 @@
     --white: #FFFFFF;
     --colorBG: #303030;
     --colorAccent: #404040;
-    --colorHeader: #23FF55;
     --buttonHighlight: #1AD747;
+    --colorPrimary: #23FF55;
 
     --spacer: 20px;
     --spacerMini: 5px;
@@ -88,7 +88,7 @@ p2 {
 }
 
 .div-header {
-    color: var(--colorHeader);
+    color: var(--colorPrimary);
     font-size: 22px;
     font-weight: normal;
     padding-top: 0px;
@@ -108,7 +108,7 @@ input[type="file"] {
 }
 
 button {
-    background-color: var(--colorHeader);
+    background-color: var(--colorPrimary);
     color: var(--white);
     font-size: var(--fontSize);
     cursor: pointer;
@@ -124,7 +124,7 @@ button:hover {
 
 .buttonHeader {
     background-color: var(--black);
-    color: var(--colorHeader);
+    color: var(--colorPrimary);
     border-radius: 0;
     font-size: 22px;
     width: 50vw;
