@@ -3,18 +3,27 @@ function encryptMessage(event) {
 
     // Handle the inputs
     let message = document.getElementById('message').value;
-    let key = document.getElementById('key').value;
-    console.log(message + '\n' + key + '\n');
+    let keyBits = document.getElementById('keyBits').value;
 
     // Inspect input field
-    if (!message || !key) {
-        alert ("Please provide a key and a message.");
+    if (!message) {
+        alert ("Please provide a message.");
         return;
     }
 
     // AES encryption
-    let encryptedText = encryptAES(message, key);
-    let decryptedText = decryptAES(encryptedText, key);
+    let encrypted = encryptAES(message, keyBits);
+
+    // Decode ciphertext based on its encoding type (Base64 or Hex)
+    let decodedCipherText = decodeCipherText(encrypted.ciphertext);
+    if (!decodedCipherText) {
+        console.log("Unable to decode cipher text: " + decodedCipherText);
+        return '';
+    }
+
+    // AES decryption
+    let decrypted = decryptAES(decodedCipherText, encrypted.key, encrypted.iv);
+    console.log('Decrypted: ' + decrypted)
 
 
     // Show result in the HTML
@@ -23,32 +32,58 @@ function encryptMessage(event) {
     resultContainer.innerHTML = `
     <div class="div-header">Encrypted Data:</div>
     <div class="container-text">
-        <p><strong style="color: #009000;">Key:</strong> ${key}</p>
-        <p><strong style="color: #009000;">Encrypted Text:</strong> ${encryptedText}<br></p>
+        <p><strong style="color: #009000;">Key:</strong> ${encrypted.key}</p>
+        <p><strong style="color: #009000;">iv:</strong> ${encrypted.iv}</p>
+        <p><strong style="color: #009000;">Encrypted Text:</strong> ${encrypted.ciphertext}<br></p>
         <p><strong style="color: #009000;">Received Text:</strong> ${message}</p>
-        <p><strong style="color: #009000;">Decrypted Text:</strong> ${decryptedText}</p>
+        <p><strong style="color: #009000;">Decrypted Text:</strong> ${decrypted}</p>
     </div>
 `;
 }
 
 
-function encryptAES(message, password) {
-  let encrypted = CryptoJS.AES.encrypt(message, password).toString();
-  console.log(
-    'Message: ' + message + '\n' +
-    'Password: ' + password
-  );
-  return encrypted
+function encryptAES(message, keyBits) {
+    // Generate key
+    let key
+    if (keyBits === 256) {
+        key = CryptoJS.lib.WordArray.random(32); // 256-bit
+    } elif (keyBits === 192) {
+        key = CryptoJS.lib.WordArray.random(24); // 192-bit
+    } elif (keyBits === 192) {
+        key = CryptoJS.lib.WordArray.random(16); // 128-bit
+    } else {
+        key = CryptoJS.lib.WordArray.random(32); // 256-bit
+    }
+
+    // Generate random IV: 16 bytes for AES
+    let iv = CryptoJS.lib.WordArray.random(16);
+    
+    // Encrypt
+    let encrypted = CryptoJS.AES.encrypt(message, key, {
+        iv: iv,
+        mode: CryptoJS.mode.CBC,
+        padding: CryptoJS.pad.Pkcs7
+    });
+    return {
+        ciphertext: encrypted.ciphertext.toString(CryptoJS.enc.Base64),
+        iv: iv.toString(CryptoJS.enc.Hex) // save or send this!
+    };
 }
 
 
-function decryptAES(encrypted, password) {
-  let bytes = CryptoJS.AES.decrypt(encrypted, password);
-  let decoded = bytes.toString(CryptoJS.enc.Utf8);
-  console.log(
-    'Hidden Message: ' + encrypted + '\n' +
-    'Decrypted:', decoded);
-  return decoded;
+function decryptAES(encryptedText, key, iv) {
+    // Convert IV from Hex to WordArray
+    let ivWordArray = CryptoJS.enc.Hex.parse(iv);
+
+    // Decrypt
+    let decrypted = CryptoJS.AES.decrypt(encryptedText, key, {
+        iv: ivWordArray,
+        mode: CryptoJS.mode.CBC,
+        padding: CryptoJS.pad.Pkcs7
+    });
+
+    // Return the decrypted message as UTF-8 string
+    return decrypted.toString(CryptoJS.enc.Utf8);
 }
 
 

@@ -8,7 +8,7 @@ decoder = Decryption()
 
 @app.route('/')
 def home():
-    return render_template('decrypt.html')
+    return render_template('AES.html') # ('decrypt.html') #
 
 @app.route('/AES')
 def encryptionAES():

@@ -4,6 +4,8 @@
         <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
         <script src="https://cdn.jsdelivr.net/npm/crypto-js@4.1.1/crypto-js.min.js"></script>
         <script src="{{ url_for('static', filename='AES.js') }}"></script>
+        <script src="{{ url_for('static', filename='buttonSelect.js') }}"></script>
+        <script src="{{ url_for('static', filename='cipherText.js') }}"></script>
 
         <title>Encryption</title>
     </head>
@@ -19,10 +21,16 @@
             <form action="/run" method="POST" enctype="multipart/form-data" class="input-form">
                 <div class="div-header">Key:</div>
                 <div class="form-group">
-                    <input type="text" id="key" name="key" required>
+                     <button type="button" id="key256" class="button-key" onclick="select('key256')">256 bit</button>
+                    <button type="button" id="key128" class="button-key" onclick="select('key128')">128 bit</button>
+                    <button type="button" id="key192" class="button-key" onclick="select('key192')">192 bit</button>
+
                 </div>
+                <input type="hidden" id="keyBits" name="keyBits" value="">
+            </form>
+            <form action="/run" method="POST" enctype="multipart/form-data" class="input-form">
+                <div class="div-header">Message:</div>
                 <div class="form-group">
-                    <div class="div-header">Message:</div>
                     <textarea id="message" name="message" required class="containerTextbox"></textarea>
                 </div>
                 <button type="button" onclick="encryptMessage(event)">Encrypt</button>

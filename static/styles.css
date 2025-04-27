@@ -1,9 +1,12 @@
 :root {
     --black: #050505;
     --white: #FFFFFF;
+    --buttonHighlight: #1AD747;
+    --buttonBits: #23FF55;
+    --buttonBitsBorder: #002000;
+    --buttonBitsSelect: #002000;
     --colorBG: #303030;
     --colorAccent: #404040;
-    --buttonHighlight: #1AD747;
     --colorPrimary: #23FF55;
 
     --spacer: 20px;
@@ -120,6 +123,25 @@ button {
 }
 button:hover {
     background-color: var(--buttonHighlight);
+}
+
+/* Style for .button-key buttons inside the form */
+.form-group .button-key {
+    background-color: var(--black);
+    color: var(--buttonBits);
+    font-size: var(--fontSize);
+    cursor: pointer;
+    border: 2px solid var(--buttonBitsBorder);
+    border-radius: var(--borderRad);
+    padding: 12px 24px;
+    margin-top: 0px;
+    margin-bottom: var(--marginButton);
+}
+/* Prevent hover effect on selected .button-key buttons */
+.form-group .button-key.selected {
+    background-color: var(--buttonBitsSelect);
+    color: var(--white);
+    border: 2px solid #39FF14;
 }
 
 .buttonHeader {
