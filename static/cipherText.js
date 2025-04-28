@@ -1,14 +1,15 @@
 function decodeCipherText(encryptedText) {
     // Check if the string is Base64 or Hex
     if (isBase64(encryptedText)) {
-        console.log("Base64 encoding detected");
+        console.log('Base64 encoding detected: ' + encryptedText);
         return CryptoJS.enc.Base64.parse(encryptedText);  // Decode from Base64
     } else if (isHex(encryptedText)) {
-        console.log("Hex encoding detected");
+        console.log('Hex encoding detected: ' + encryptedText);
         return CryptoJS.enc.Hex.parse(encryptedText);  // Decode from Hex
     } else {
-        console.log("Unknown encoding type: " + encryptedText);
-        return null;  // Return null if unknown encoding
+        console.log('Unknown encoding type: ' + encryptedText);
+        console.log('Unaltered text returned.')
+        return encryptedText;  // Return null if unknown encoding
     }
 }
 
@@ -25,3 +26,9 @@ function isHex(str) {
     let regex = /^[0-9a-f]+$/;
     return regex.test(str);
 }
+
+
+
+//// Decode ciphertext based on its encoding type (Base64 or Hex)
+//let cipherText = 'SGlkZGVuIE1lc3NhZ2VzCg=='
+//let decodedCipherText = decodeCipherText(cipherText);

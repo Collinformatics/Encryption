@@ -1,5 +1,5 @@
 function decryptText() {
-    const testrun = true;
+    const testrun = false;
 
     let encryptedText;
     let key;

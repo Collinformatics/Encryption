@@ -2,10 +2,8 @@ function encryptMessage(event) {
     event.preventDefault(); // Prevent any default form action
 
     // Handle the inputs
-    // let message = document.getElementById('message').value;
-    let message = 'Hide the secret message';
+    let message = document.getElementById('message').value;
     let keyBits = document.getElementById('keyBits').value;
-    console.log('key: ' + keyBits)
 
     // Inspect input field
     if (!message) {
@@ -16,16 +14,8 @@ function encryptMessage(event) {
     // AES encryption
     let encrypted = encryptAES(message, keyBits);
 
-    // Decode ciphertext based on its encoding type (Base64 or Hex)
-    let decodedCipherText = decodeCipherText(encrypted.ciphertext);
-    if (!decodedCipherText) {
-        console.log("Unable to decode cipher text: " + decodedCipherText);
-        return '';
-    }
-
     // AES decryption
-    let decrypted = decryptAES(decodedCipherText, encrypted.key, encrypted.iv);
-    console.log('Decrypted: ' + decrypted)
+    let decrypted = decryptAES(encrypted.ciphertext, encrypted.key, encrypted.iv);
     
     // Define label color
     const labelColor = getComputedStyle(document.documentElement).getPropertyValue('--buttonBG').trim();
@@ -37,7 +27,7 @@ function encryptMessage(event) {
     <div class="div-header">Encrypted Data:</div>
     <div class="container-text">
         <p><strong style="color: ${labelColor};">Key (${keyBits}):</strong> ${encrypted.key}</p>
-        <p><strong style="color: ${labelColor};">iv:</strong> ${encrypted.iv}</p>
+        <p><strong style="color: ${labelColor};">IV:</strong> ${encrypted.iv}</p>
         <p><strong style="color: ${labelColor};">Encrypted Text:</strong> ${encrypted.ciphertext}<br></p>
         <p><strong style="color: ${labelColor};">Received Text:</strong> ${message}</p>
         <p><strong style="color: ${labelColor};">Decrypted Text:</strong> ${decrypted}</p>
@@ -49,11 +39,11 @@ function encryptMessage(event) {
 function encryptAES(message, keyBits) {
     // Generate key
     let key
-    if (keyBits === 256) {
+    if (keyBits === '256') {
         key = CryptoJS.lib.WordArray.random(32); // 256-bit
-    } else if (keyBits === 192) {
+    } else if (keyBits === '192') {
         key = CryptoJS.lib.WordArray.random(24); // 192-bit
-    } else if (keyBits === 192) {
+    } else if (keyBits === '128') {
         key = CryptoJS.lib.WordArray.random(16); // 128-bit
     } else {
         key = CryptoJS.lib.WordArray.random(32); // 256-bit
@@ -80,20 +70,18 @@ function encryptAES(message, keyBits) {
 
 
 function decryptAES(encryptedText, key, iv) {
-    // Convert IV from Hex to WordArray
-    let ivWordArray = CryptoJS.enc.Hex.parse(iv);
-    console.log('iv: ' + iv + '\nArray: ' + ivWordArray);
-
     // Decrypt
     let decrypted = CryptoJS.AES.decrypt(encryptedText, key, {
-        iv: ivWordArray,
+        iv: CryptoJS.enc.Hex.parse(iv), // Pass the parsed WordArray for IV
         mode: CryptoJS.mode.CBC,
         padding: CryptoJS.pad.Pkcs7
     });
 
-    // Return the decrypted message as UTF-8 string
-    return decrypted.toString(CryptoJS.enc.Utf8);
+    let decryptedMessage = decrypted.toString(CryptoJS.enc.Utf8); // Decrypted message as UTF-8
+
+    return decryptedMessage;
 }
+
 
 
 // Button Functions
