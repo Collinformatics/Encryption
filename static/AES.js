@@ -2,8 +2,10 @@ function encryptMessage(event) {
     event.preventDefault(); // Prevent any default form action
 
     // Handle the inputs
-    let message = document.getElementById('message').value;
+    // let message = document.getElementById('message').value;
+    let message = 'Hide the secret message';
     let keyBits = document.getElementById('keyBits').value;
+    console.log('key: ' + keyBits)
 
     // Inspect input field
     if (!message) {
@@ -34,7 +36,7 @@ function encryptMessage(event) {
     resultContainer.innerHTML = `
     <div class="div-header">Encrypted Data:</div>
     <div class="container-text">
-        <p><strong style="color: ${labelColor};">Key:</strong> ${encrypted.key}</p>
+        <p><strong style="color: ${labelColor};">Key (${keyBits}):</strong> ${encrypted.key}</p>
         <p><strong style="color: ${labelColor};">iv:</strong> ${encrypted.iv}</p>
         <p><strong style="color: ${labelColor};">Encrypted Text:</strong> ${encrypted.ciphertext}<br></p>
         <p><strong style="color: ${labelColor};">Received Text:</strong> ${message}</p>

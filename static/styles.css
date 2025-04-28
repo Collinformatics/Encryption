@@ -94,7 +94,6 @@ button:hover {
 /* Prevent hover effect on selected .button-key buttons */
 .form-group .button-key.selected {
     background-color: var(--buttonBitsSelect);
-    color: var(--white);
     border: 2px solid #39FF14;
 }
 
