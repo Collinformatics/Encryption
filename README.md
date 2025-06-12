@@ -3,9 +3,23 @@
     pip install cryptography
     pip install Flask
 
+# Running The Program:
+
+Decryption:
+
+- Key: Add input if needed for decryption
+
+- Encrypted Text: Add encrypted text
+
+Encryption:
+
+- Key: Select length of your key
+
+- Message: Add the text that you to be encrypted
+
 # Terminating The Server:
 
-Leaving the process running can be a significant drain on your battery, so its best to turn things off after you are done.
+Leaving the process running can drain your battery, so its best to turn things off after you are done.
 
 The commands you enter into the terminal will depend upon your OS:
 
